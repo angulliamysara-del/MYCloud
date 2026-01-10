@@ -126,7 +126,7 @@ function logout() {
 }
 
 async function deleteAccount() {
-  const confirmDelete = confirm("PERINGATAN: Apakah Anda yakin ingin menghapus akun ini? Semua file Anda di Cloud dan folder di Google Drive akan DIHAPUS PERMANEN!");
+  const confirmDelete = confirm("PERINGATAN: Apakah Anda yakin ingin menghapus akun ini? Semua file Anda di Cloud dan folder di Cloud Storage akan DIHAPUS PERMANEN!");
 
   if (!confirmDelete) return;
 
