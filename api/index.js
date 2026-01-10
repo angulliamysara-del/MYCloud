@@ -31,11 +31,14 @@ const quotaSchema = new mongoose.Schema({
   limit: { type: Number, default: DEFAULT_QUOTA }
 });
 
-const User = mongoose.model("User", userSchema);
-const Quota = mongoose.model("Quota", quotaSchema);
+const User = mongoose.models.User || mongoose.model("User", userSchema);
+const Quota = mongoose.models.Quota || mongoose.model("Quota", quotaSchema);
 
 app.use(cors());
 app.use(express.json());
+
+// Health Check
+app.get("/ping", (req, res) => res.send("pong"));
 
 // --- DATABASE CONNECTION ---
 let isConnected = false;
