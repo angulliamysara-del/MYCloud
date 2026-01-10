@@ -12,7 +12,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-const upload = multer({ dest: "tmp/" });
+const upload = multer({ dest: "/tmp" });
 const PORT = process.env.PORT || 3000;
 
 // --- CONFIGURATION ---
@@ -93,7 +93,7 @@ async function setupDrive() {
   drive = google.drive({ version: "v3", auth });
   console.log("✅ Google Drive API Ready");
 }
-setupDrive();
+// setupDrive(); // Removed: Handled by middleware for serverless
 
 // --- HELPERS ---
 const getUser = async (req) => {
