@@ -16,3 +16,6 @@ backend/quota.json
 # Optional: Log files
 *.log
 .env
+# Documentation (Keep locally only)
+MONGODB_SETUP.md
+TROUBLESHOOTING_VERCEL.md
