@@ -1,4 +1,7 @@
-const API = "http://localhost:3000";
+// Detect if running locally or on cloud
+const API = window.location.origin === "file://" || window.location.hostname === "127.0.0.1"
+  ? "http://localhost:3000"
+  : window.location.origin + "/api";
 
 // DOM Elements
 const authSection = document.getElementById('authSection');
