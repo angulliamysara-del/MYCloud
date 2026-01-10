@@ -124,7 +124,36 @@ function showAuth() {
 function logout() {
   showAuth();
 }
+
+async function deleteAccount() {
+  const confirmDelete = confirm("PERINGATAN: Apakah Anda yakin ingin menghapus akun ini? Semua file Anda di Cloud dan folder di Google Drive akan DIHAPUS PERMANEN!");
+
+  if (!confirmDelete) return;
+
+  const secondConfirm = confirm("TEKALI LAGI: Ini tidak bisa dibatalkan. Hapus akun sekarang?");
+  if (!secondConfirm) return;
+
+  try {
+    const res = await fetch(`${API}/delete-account`, {
+      method: 'DELETE',
+      headers: { 'Authorization': `Bearer ${TOKEN}` }
+    });
+
+    if (res.ok) {
+      alert("Akun Anda telah berhasil dihapus.");
+      logout();
+    } else {
+      const data = await res.json();
+      alert("Gagal menghapus akun: " + (data.error || "Unknown Error"));
+    }
+  } catch (error) {
+    console.error("Delete Account Error:", error);
+    alert("Gagal menghubungi server.");
+  }
+}
+
 window.logout = logout;
+window.deleteAccount = deleteAccount;
 window.switchAuth = switchAuth;
 
 // ---- DRAG & DROP ----

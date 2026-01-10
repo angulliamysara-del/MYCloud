@@ -374,6 +374,28 @@ app.delete("/delete/:name", async (req, res) => {
   }
 });
 
+app.delete("/delete-account", async (req, res) => {
+  const username = await getUser(req);
+  if (!username) return res.status(401).json({ error: "Unauthorized" });
+
+  try {
+    // 1. Delete Folder from Google Drive
+    const folderId = await getUserFolder(username);
+    if (folderId) {
+      await drive.files.delete({ fileId: folderId });
+    }
+
+    // 2. Delete from MongoDB
+    await User.deleteOne({ username });
+    await Quota.deleteOne({ username });
+
+    res.json({ message: "Account deleted successfully" });
+  } catch (error) {
+    console.error("Delete Account Error:", error);
+    res.status(500).json({ error: "Failed to delete account" });
+  }
+});
+
 // Start Server (Only for local dev)
 if (process.env.NODE_ENV !== "production") {
   app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
