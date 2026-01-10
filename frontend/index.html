@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MYCloud</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@600;700&display=swap"
+    rel="stylesheet" />
+  <script src="https://unpkg.com/feather-icons"></script>
+</head>
+
+<body>
+
+  <!-- AUTH SECTION -->
+  <div id="authSection" class="auth-container">
+    <div class="glass-card">
+      <div class="logo-large">
+        <i data-feather="cloud" style="width: 48px; height: 48px;"></i>
+        <h1>MYCloud</h1>
+      </div>
+
+      <!-- TABS -->
+      <div class="auth-tabs">
+        <button id="tabLogin" class="active" onclick="switchAuth('login')">Login</button>
+        <button id="tabRegister" onclick="switchAuth('register')">Register</button>
+      </div>
+
+      <!-- LOGIN FORM -->
+      <form id="loginForm" class="auth-form">
+        <div class="input-group">
+          <label>Username</label>
+          <input type="text" id="loginUser" required placeholder="Enter username" />
+        </div>
+        <div class="input-group">
+          <label>Password</label>
+          <input type="password" id="loginPass" required placeholder="Enter password" />
+        </div>
+        <button type="submit" class="primary-btn">Login</button>
+      </form>
+
+      <!-- REGISTER FORM -->
+      <form id="registerForm" class="auth-form hidden">
+        <div class="input-group">
+          <label>Username</label>
+          <input type="text" id="regUser" required placeholder="Choose username" />
+        </div>
+        <div class="input-group">
+          <label>Password</label>
+          <input type="password" id="regPass" required placeholder="Choose password" />
+        </div>
+        <button type="submit" class="primary-btn">Register</button>
+      </form>
+
+      <p id="authMessage" class="auth-message"></p>
+    </div>
+  </div>
+
+  <!-- DASHBOARD SECTION -->
+  <div id="dashboardSection" class="glass-container hidden">
+    <aside class="sidebar">
+      <div class="logo">
+        <i data-feather="cloud"></i>
+        <span>MYCloud</span>
+      </div>
+
+      <div class="user-profile">
+        <div class="avatar">
+          <i data-feather="user"></i>
+        </div>
+        <span id="currentUserDisplay">User</span>
+      </div>
+
+      <div class="storage-info">
+        <p>Storage used</p>
+        <div class="progress-bar">
+          <div class="progress"></div>
+        </div>
+        <span>0 GB / 5 GB</span>
+      </div>
+
+      <button onclick="logout()" class="logout-btn">
+        <i data-feather="log-out"></i> Logout
+      </button>
+    </aside>
+
+    <main class="content">
+      <header>
+        <h2>My Files</h2>
+      </header>
+
+      <div id="dropZone" class="upload-area">
+        <i data-feather="upload-cloud" class="upload-icon"></i>
+        <h3>Drag & Drop files here</h3>
+        <p>or click to browse</p>
+        <input type="file" id="fileInput" hidden />
+      </div>
+
+      <div class="file-list-header">
+        <span>Name</span>
+        <span>Size</span>
+        <span>Action</span>
+      </div>
+
+      <ul id="fileList" class="file-list"></ul>
+    </main>
+  </div>
+
+  <!-- UPLOAD PROGRESS MODAL -->
+  <div id="uploadModal" class="glass-container hidden"
+    style="position: fixed; top:0; left:0; width:100%; height:100%; z-index: 2000; background: rgba(0,0,0,0.6); align-items: center; justify-content: center;">
+    <div class="glass-card" style="width: 350px; height: auto; padding: 30px;">
+      <h3 id="uploadTitle" style="margin-bottom: 20px; color: var(--primary);">Uploading...</h3>
+
+      <div id="progressContainer" style="width: 100%;">
+        <div class="progress-bar" style="width: 100%; background: rgba(0,0,0,0.1);">
+          <div id="uploadProgressBar" class="progress" style="width: 0%;"></div>
+        </div>
+        <span id="uploadPercent"
+          style="display:block; margin-top: 10px; font-weight: bold; color: var(--text-muted); text-align: center;">0%</span>
+      </div>
+
+      <p id="uploadMessage"
+        style="display:none; margin: 15px 0; text-align: center; color: var(--text-main); font-weight: 500;"></p>
+
+      <button id="closeUploadBtn" onclick="closeUploadModal()" class="primary-btn"
+        style="display:none; width: 100%;">Close</button>
+    </div>
+  </div>
+
+  <!-- PREVIEW MODAL -->
+  <div id="previewModal" class="glass-container hidden"
+    style="position: fixed; top:0; left:0; width:100%; height:100%; z-index: 3000; background: rgba(0,0,0,0.8); align-items: center; justify-content: center;">
+    <div class="glass-card" style="width: 80%; height: 80%; padding: 0; overflow: hidden; position: relative;">
+      <button onclick="closePreviewModal()"
+        style="position: absolute; top: 15px; right: 15px; z-index: 10; background: rgba(0,0,0,0.5); border: none; color: white; border-radius: 50%; width: 32px; height: 32px; cursor: pointer; display: flex; align-items: center; justify-content: center;">
+        <i data-feather="x"></i>
+      </button>
+      <div id="previewContent"
+        style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: #000;">
+        <!-- Content will be injected here -->
+      </div>
+    </div>
+  </div>
+
+  <div id="notification" class="notification hidden"></div>
+
+  <script src="app.js"></script>
+  <script>feather.replace();</script>
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+# System Files
+node_modules/
+tmp/
+.DS_Store
+Thumbs.db
+
+# Backend Secrets & Data (NEVER UPLOAD THESE)
+backend/client_secret.json
+backend/token.json
+backend/credentials.json
+
+# Database & Runtime Data (Exclude these so user data isn't shared)
+backend/users.json
+backend/quota.json
+
+# Optional: Log files
+*.log
