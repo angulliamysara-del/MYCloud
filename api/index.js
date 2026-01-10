@@ -38,12 +38,26 @@ app.use(cors());
 app.use(express.json());
 
 // --- DATABASE CONNECTION ---
-// Instructions: Replace 'YOUR_MONGODB_URI' with your actual Atlas connection string if running locally without ENV vars
-const MONGO_URI = process.env.MONGO_URI || "mongodb://127.0.0.1:27017/mycloud_local";
+let isConnected = false;
+const connectDB = async () => {
+  if (isConnected) return;
+  const MONGO_URI = process.env.MONGO_URI || "mongodb://127.0.0.1:27017/mycloud_local";
+  await mongoose.connect(MONGO_URI);
+  isConnected = true;
+  console.log("✅ Connected to MongoDB");
+};
 
-mongoose.connect(MONGO_URI)
-  .then(() => console.log("✅ Connected to MongoDB"))
-  .catch(err => console.error("❌ MongoDB Connection Error:", err));
+// Middleware to ensure DB and Drive connection
+app.use(async (req, res, next) => {
+  try {
+    await connectDB();
+    if (!drive) await setupDrive();
+    next();
+  } catch (err) {
+    console.error("Initialization Error:", err);
+    res.status(500).json({ error: "Server Initialization Error" });
+  }
+});
 
 // --- AUTHENTICATION STRATEGY ---
 let drive;
@@ -352,5 +366,10 @@ app.delete("/delete/:name", async (req, res) => {
   }
 });
 
-// Start Server
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// Start Server (Only for local dev)
+if (process.env.NODE_ENV !== "production") {
+  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+}
+
+// Export for Vercel
+export default app;

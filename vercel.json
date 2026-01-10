@@ -12,8 +12,8 @@
     ],
     "rewrites": [
         {
-            "source": "/(api/.*)",
-            "destination": "/$1"
+            "source": "/api/(.*)",
+            "destination": "/api/index.js"
         },
         {
             "source": "/((?!api/).*)",
