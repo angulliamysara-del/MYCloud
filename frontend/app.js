@@ -201,7 +201,7 @@ function uploadFile(file) {
     if (xhr.status >= 200 && xhr.status < 300) {
       uploadTitle.innerText = "Upload Success!";
       uploadTitle.style.color = "#2ed573";
-      uploadMessage.innerText = "File has been successfully uploaded to Google Drive.";
+      uploadMessage.innerText = "File has been successfully uploaded to Cloud Storage.";
 
       loadFiles();
       updateStorage();

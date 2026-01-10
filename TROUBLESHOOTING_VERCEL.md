@@ -16,7 +16,7 @@ Buka link website Anda dan tambahkan `/api/ping` di belakangnya.
 5.  Lihat kembali ke halaman Logs. Cari baris berwarna **MERAH**.
     *   Jika ada tulisan `CORS Error`, berarti keamanan browser memblokir.
     *   Jika ada `MONGO_URI undefined`, berarti variabel rahasia belum terisi.
-    *   Jika ada `IP not whitelisted`, berarti Anda lupa Langkah 5.
+    *   Jika ada `IP not whitelisted`, berarti Anda lupa Langkah 3 di bawah.
 
 ## 3. Pastikan MongoDB Whitelist (Wajib!)
 Aplikasi cloud tidak punya "Alamat IP" tetap. Jadi Anda harus mengizinkan SEMUA IP masuk ke database.
