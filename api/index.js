@@ -49,6 +49,11 @@ const connectDB = async () => {
 
 // Middleware to ensure DB and Drive connection
 app.use(async (req, res, next) => {
+  // Normalize path for Vercel (strip /api if present)
+  if (req.url.startsWith('/api')) {
+    req.url = req.url.replace('/api', '');
+  }
+
   try {
     await connectDB();
     if (!drive) await setupDrive();

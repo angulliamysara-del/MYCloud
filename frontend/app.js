@@ -72,7 +72,9 @@ loginForm.addEventListener('submit', async (e) => {
       authMessage.style.color = "var(--danger)";
     }
   } catch (error) {
-    authMessage.textContent = "Network Error";
+    console.error("Login Error:", error);
+    authMessage.textContent = "Network Error: " + error.message;
+    authMessage.style.color = "var(--danger)";
   }
 });
 
