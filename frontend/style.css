@@ -12,6 +12,7 @@
   --glass-border: rgba(255, 255, 255, 0.5);
   --primary: #4e8cff;
   --primary-hover: #3a7bd5;
+  --secondary: #00f2fe;
   --text-main: #2d3436;
   --text-muted: #636e72;
   --danger: #ff7675;
@@ -434,6 +435,7 @@ header h2 {
   -webkit-background-clip: text !important;
   -webkit-text-fill-color: transparent !important;
   background-clip: text !important;
+  display: inline-block;
 }
 
 .hero-subtitle {
