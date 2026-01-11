@@ -134,7 +134,7 @@ async function deleteAccount() {
 
   if (!confirmDelete) return;
 
-  const secondConfirm = confirm("TEKALI LAGI: Ini tidak bisa dibatalkan. Hapus akun sekarang?");
+  const secondConfirm = confirm("SEKALI LAGI: Ini tidak bisa dibatalkan. Hapus akun sekarang?");
   if (!secondConfirm) return;
 
   try {
