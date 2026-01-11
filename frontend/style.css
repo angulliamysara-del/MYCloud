@@ -383,20 +383,21 @@ header h2 {
 /* Notification */
 .notification {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(-100px);
   padding: 15px 25px;
   background: #2ed573;
   color: white;
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  transform: translateY(100px);
   transition: transform 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
   font-weight: 500;
+  z-index: 4000;
 }
 
 .notification.show {
-  transform: translateY(0);
+  transform: translateX(-50%) translateY(0);
 }
 
 /* === LANDING PAGE === */
