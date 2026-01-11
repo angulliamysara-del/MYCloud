@@ -67,6 +67,7 @@ loginForm.addEventListener('submit', async (e) => {
       USERNAME = data.username;
       localStorage.setItem("mycloud_token", TOKEN);
       localStorage.setItem("mycloud_user", USERNAME);
+      loginForm.reset();
       showDashboard();
     } else {
       authMessage.textContent = data.error || "Login Failed";
@@ -95,6 +96,7 @@ registerForm.addEventListener('submit', async (e) => {
     if (res.ok) {
       authMessage.textContent = "Registration Successful! Please Login.";
       authMessage.style.color = "#2ed573";
+      registerForm.reset();
       setTimeout(() => switchAuth('login'), 1500);
     } else {
       authMessage.textContent = data.error || "Registration Failed";
