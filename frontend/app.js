@@ -470,8 +470,47 @@ function showNotification(msg, type = "success") {
   }, 3000);
 }
 
-// Expose delete
+// ---- NAVIGATION ----
+function startApp() {
+  const landing = document.getElementById('landingSection');
+  const auth = document.getElementById('authSection');
+
+  landing.style.opacity = '0';
+  landing.style.visibility = 'hidden';
+
+  setTimeout(() => {
+    landing.classList.add('hidden');
+    auth.classList.remove('hidden');
+    auth.classList.add('animate-fade-in');
+  }, 800);
+}
+
+function switchAuth(type) {
+  const loginForm = document.getElementById('loginForm');
+  const registerForm = document.getElementById('registerForm');
+  const tabLogin = document.getElementById('tabLogin');
+  const tabRegister = document.getElementById('tabRegister');
+  const authMessage = document.getElementById('authMessage');
+
+  authMessage.innerText = "";
+
+  if (type === 'login') {
+    loginForm.classList.remove('hidden');
+    registerForm.classList.add('hidden');
+    tabLogin.classList.add('active');
+    tabRegister.classList.remove('active');
+  } else {
+    loginForm.classList.add('hidden');
+    registerForm.classList.remove('hidden');
+    tabLogin.classList.remove('active');
+    tabRegister.classList.add('active');
+  }
+}
+
+// Expose functions
 window.del = del;
+window.startApp = startApp;
+window.switchAuth = switchAuth;
 
 // Start
 init();
