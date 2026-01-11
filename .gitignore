@@ -3,19 +3,33 @@ node_modules/
 tmp/
 .DS_Store
 Thumbs.db
+dist/
+.vercel
 
-# Backend Secrets & Data (NEVER UPLOAD THESE)
+# Backend & API Secrets (NEVER UPLOAD TO GITHUB)
+*.json
+!package.json
+!vercel.json
+!client_secret.json.example
+!token.json.example
+
+# Credentials in specific folders
 backend/client_secret.json
 backend/token.json
 backend/credentials.json
+api/client_secret.json
+api/token.json
 
-# Database & Runtime Data (Exclude these so user data isn't shared)
+# Environment Variables
+.env
+.env.local
+
+# Database & Runtime Data
+users.json
+quota.json
 backend/users.json
 backend/quota.json
 
-# Optional: Log files
-*.log
-.env
-# Documentation (Keep locally only)
+# Documentation/Setup (Keep locally if they contain sensitive steps)
 MONGODB_SETUP.md
 TROUBLESHOOTING_VERCEL.md
