@@ -125,6 +125,10 @@ function showAuth() {
   USERNAME = null;
   localStorage.removeItem("mycloud_token");
   localStorage.removeItem("mycloud_user");
+
+  // Reset forms on logout to clear history
+  loginForm.reset();
+  registerForm.reset();
 }
 
 function logout() {
@@ -132,11 +136,11 @@ function logout() {
 }
 
 async function deleteAccount() {
-  const confirmDelete = confirm("PERINGATAN: Apakah Anda yakin ingin menghapus akun ini? Semua file Anda di Cloud dan folder di Cloud Storage akan DIHAPUS PERMANEN!");
+  const confirmDelete = confirm("WARNING: Are you sure you want to delete this account? All your files in the Cloud and folders in Cloud Storage will be PERMANENTLY DELETED!");
 
   if (!confirmDelete) return;
 
-  const secondConfirm = confirm("SEKALI LAGI: Ini tidak bisa dibatalkan. Hapus akun sekarang?");
+  const secondConfirm = confirm("ONE LAST TIME: This cannot be undone. Delete account now?");
   if (!secondConfirm) return;
 
   try {
@@ -146,15 +150,15 @@ async function deleteAccount() {
     });
 
     if (res.ok) {
-      alert("Akun Anda telah berhasil dihapus.");
+      alert("Your account has been successfully deleted.");
       logout();
     } else {
       const data = await res.json();
-      alert("Gagal menghapus akun: " + (data.error || "Unknown Error"));
+      alert("Failed to delete account: " + (data.error || "Unknown Error"));
     }
   } catch (error) {
     console.error("Delete Account Error:", error);
-    alert("Gagal menghubungi server.");
+    alert("Failed to connect to server.");
   }
 }
 
