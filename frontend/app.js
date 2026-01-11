@@ -4,6 +4,7 @@ const API = window.location.origin === "file://" || window.location.hostname ===
   : window.location.origin + "/api";
 
 // DOM Elements
+const landingSection = document.getElementById('landingSection');
 const authSection = document.getElementById('authSection');
 const dashboardSection = document.getElementById('dashboardSection');
 const loginForm = document.getElementById('loginForm');
@@ -105,6 +106,8 @@ registerForm.addEventListener('submit', async (e) => {
 });
 
 function showDashboard() {
+  window.scrollTo(0, 0); // Reset scroll position
+  landingSection.classList.add('hidden');
   authSection.classList.add('hidden');
   dashboardSection.classList.remove('hidden');
   currentUserDisplay.textContent = USERNAME;
@@ -114,6 +117,7 @@ function showDashboard() {
 
 function showAuth() {
   dashboardSection.classList.add('hidden');
+  landingSection.classList.remove('hidden');
   authSection.classList.remove('hidden');
   TOKEN = null;
   USERNAME = null;
@@ -472,17 +476,8 @@ function showNotification(msg, type = "success") {
 
 // ---- NAVIGATION ----
 function startApp() {
-  const landing = document.getElementById('landingSection');
   const auth = document.getElementById('authSection');
-
-  landing.style.opacity = '0';
-  landing.style.visibility = 'hidden';
-
-  setTimeout(() => {
-    landing.classList.add('hidden');
-    auth.classList.remove('hidden');
-    auth.classList.add('animate-fade-in');
-  }, 800);
+  auth.scrollIntoView({ behavior: 'smooth' });
 }
 
 function switchAuth(type) {
