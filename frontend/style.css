@@ -511,3 +511,108 @@ header h2 {
     transform: translateY(-20px);
   }
 }
+
+/* === MOBILE RESPONSIVENESS & ZOOM OPTIMIZATION === */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.2rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .hero-features {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+  }
+
+  .glass-card {
+    width: 90%;
+    padding: 25px;
+  }
+
+  .glass-container {
+    flex-direction: column;
+    height: auto;
+    min-height: 95vh;
+    margin: 10px auto;
+    width: 95%;
+  }
+
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    padding: 20px;
+  }
+
+  .logo {
+    margin-bottom: 20px;
+    justify-content: center;
+  }
+
+  .user-profile {
+    margin-bottom: 15px;
+  }
+
+  .storage-info {
+    margin-top: 10px;
+  }
+
+  .logout-btn,
+  .delete-account-btn {
+    margin-top: 10px;
+  }
+
+  .content {
+    padding: 20px;
+  }
+
+  .upload-area {
+    padding: 20px;
+  }
+
+  /* File List Mobile Adjustments */
+  .file-list-header {
+    grid-template-columns: 1fr auto;
+  }
+
+  .file-list-header span:nth-child(2) {
+    display: none;
+    /* Hide size on small screens */
+  }
+
+  .file-item {
+    grid-template-columns: 1fr auto;
+    padding: 10px 15px;
+  }
+
+  /* Modal responsive sizes */
+  #previewModal .glass-card {
+    width: 95% !important;
+    height: 70% !important;
+  }
+}
+
+/* Base Zoom/Scaling Improvements */
+img,
+iframe {
+  max-width: 100%;
+}
+
+.glass-card,
+.glass-container {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Ensure touch targets are large enough */
+button,
+.cta-btn,
+.primary-btn,
+.action-btn {
+  min-height: 44px;
+  min-width: 44px;
+}
